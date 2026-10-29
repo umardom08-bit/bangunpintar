@@ -1,0 +1,86 @@
+﻿kode,uraian_pekerjaan,satuan_pekerjaan,kunci,komponen,jenis,satuan,koefisien,catatan,sumber
+A.2.3.1.1,Penggalian 1 m3 tanah biasa sedalam 1 m,m3,galian_tanah,Pekerja,upah,OH,0.75,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.2.3.1.1,Penggalian 1 m3 tanah biasa sedalam 1 m,m3,galian_tanah,Mandor,upah,OH,0.025,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Pekerja,upah,OH,1.5,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Tukang Batu,upah,OH,0.75,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Kepala Tukang,upah,OH,0.075,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Mandor,upah,OH,0.075,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Batu belah,bahan,m3,1.2,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Semen Portland,bahan,kg,91,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.3.2.1.5,Pemasangan 1m3 pondasi batu belah campuran 1SP : 8PP,m3,pondasi_batu_belah,Pasir pasang,bahan,m3,0.584,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.9.b,"1m3 beton Redymic mutu fc = 20,8 Mpa ( K - 250 ), slump ( 10 ± 2 ) cm.",m3,beton_k250,Pekerja,upah,OH,0.825,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.9.b,"1m3 beton Redymic mutu fc = 20,8 Mpa ( K - 250 ), slump ( 10 ± 2 ) cm.",m3,beton_k250,Tukang Batu,upah,OH,0.1375,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.9.b,"1m3 beton Redymic mutu fc = 20,8 Mpa ( K - 250 ), slump ( 10 ± 2 ) cm.",m3,beton_k250,Kepala Tukang,upah,OH,0.014,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.9.b,"1m3 beton Redymic mutu fc = 20,8 Mpa ( K - 250 ), slump ( 10 ± 2 ) cm.",m3,beton_k250,Mandor,upah,OH,0.0415,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.9.b,"1m3 beton Redymic mutu fc = 20,8 Mpa ( K - 250 ), slump ( 10 ± 2 ) cm.",m3,beton_k250,"Adukan Ready Mix fc' 20,8 Mpa",bahan,m3,1.090909,satuan di file asli tertulis kg; seharusnya m3,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.17,Pembesian 1 kg dengan besi polos / ulir,kg,pembesian,Pekerja,upah,OH,0.064,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.17,Pembesian 1 kg dengan besi polos / ulir,kg,pembesian,Tukang Besi,upah,OH,0.007,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.17,Pembesian 1 kg dengan besi polos / ulir,kg,pembesian,Kepala Tukang,upah,OH,0.001,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.17,Pembesian 1 kg dengan besi polos / ulir,kg,pembesian,Mandor,upah,OH,0.0004,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.17,Pembesian 1 kg dengan besi polos / ulir,kg,pembesian,Besi beton (polos / ulir),bahan,kg,1.05,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.17,Pembesian 1 kg dengan besi polos / ulir,kg,pembesian,Kawat beton,bahan,kg,0.015,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Pekerja,upah,OH,0.52,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Tukang Kayu,upah,OH,0.26,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Kepala Tukang,upah,OH,0.026,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Mandor,upah,OH,0.026,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Kayu begesting,bahan,m3,0.032,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Paku 5 - 10 cm,bahan,kg,0.3,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.1.1.21,Pemasangan 1 m2 bekisting untuk Sloof,m2,bekisting_sloof,Minyak Bekisting,bahan,liter,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Pekerja,upah,OH,0.3,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Tukang Batu,upah,OH,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Kepala Tukang,upah,OH,0.01,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Mandor,upah,OH,0.015,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Bata Merah,bahan,bh,70,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Semen Portland,bahan,kg,6.5,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.1.12,Pas. 1m2 dinding bata merah ( 5x11x22 ) cm tebal 1/2 batu campuran 1SP : 8PP,m2,pasangan_bata_1/2,Pasir pasang,bahan,m3,0.05,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.8,Pemasangan 1 m² plesteran 1SP : 8Ps tebal 15 mm,m2,plesteran_1pc8ps_15mm,Pekerja,upah,OH,0.3,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.8,Pemasangan 1 m² plesteran 1SP : 8Ps tebal 15 mm,m2,plesteran_1pc8ps_15mm,Tukang Batu,upah,OH,0.15,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.8,Pemasangan 1 m² plesteran 1SP : 8Ps tebal 15 mm,m2,plesteran_1pc8ps_15mm,Kepala Tukang,upah,OH,0.015,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.8,Pemasangan 1 m² plesteran 1SP : 8Ps tebal 15 mm,m2,plesteran_1pc8ps_15mm,Mandor,upah,OH,0.015,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.8,Pemasangan 1 m² plesteran 1SP : 8Ps tebal 15 mm,m2,plesteran_1pc8ps_15mm,Semen Portland,bahan,kg,3.456,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.8,Pemasangan 1 m² plesteran 1SP : 8Ps tebal 15 mm,m2,plesteran_1pc8ps_15mm,Pasir pasang,bahan,m3,0.029,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.27,Pemasangan 1 m² acian,m2,acian,Pekerja,upah,OH,0.2,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.27,Pemasangan 1 m² acian,m2,acian,Tukang Batu,upah,OH,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.27,Pemasangan 1 m² acian,m2,acian,Kepala Tukang,upah,OH,0.01,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.27,Pemasangan 1 m² acian,m2,acian,Mandor,upah,OH,0.01,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.2.27,Pemasangan 1 m² acian,m2,acian,Semen Portland,bahan,kg,3.25,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Pekerja,upah,OH,0.7,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Tukang Batu,upah,OH,0.35,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Kepala Tukang,upah,OH,0.035,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Mandor,upah,OH,0.035,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Ubin warna,bahan,dos,1.05,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Semen Portland,bahan,kg,10,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Semen warna,bahan,kg,0.5,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.4.3.35,Pemasangan 1 m² lantai keramik warna ukuran 40cm x 40cm,m2,lantai_keramik_40x40,Pasir pasang,bahan,m3,0.045,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Pekerja,upah,OH,0.2625,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Tukang Gibsum,upah,OH,0.35,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Kepala Tukang,upah,OH,0.035,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Mandor,upah,OH,0.018,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Hollow plafon 40/40.0.35 (@ 4 m ),bahan,btg,0.260417,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Hollow plafon 20/40.0.35 (@ 4 m ),bahan,btg,0.520833,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.21,"1 m2 Memasang rangka plafon hollow 40/40/0,35 mm & 20/40/ 0,35 mm",m2,rangka_plafon_hollow,Assesoris (perkuatan; las dll),bahan,ls,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.1.7,1 m2 Memasang plafon PVC,m2,plafon_pvc,Pekerja,upah,OH,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.1.7,1 m2 Memasang plafon PVC,m2,plafon_pvc,Tukang Gibsum,upah,OH,0.05,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.1.7,1 m2 Memasang plafon PVC,m2,plafon_pvc,Kepala Tukang,upah,OH,0.005,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.1.7,1 m2 Memasang plafon PVC,m2,plafon_pvc,Mandor,upah,OH,0.005,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.1.7,1 m2 Memasang plafon PVC,m2,plafon_pvc,Plafond PVC lebar 20 cm,bahan,m',5,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.1.7,1 m2 Memasang plafon PVC,m2,plafon_pvc,Driling screw,bahan,bj,6,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+"A.4.7.1,10","Pengecatan 1 m2 tembok baru Interior ( 1 lapis cat dasar, 2 lapis cat penutup )",m2,cat_tembok_interior,Pekerja,upah,OH,0.02,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+"A.4.7.1,10","Pengecatan 1 m2 tembok baru Interior ( 1 lapis cat dasar, 2 lapis cat penutup )",m2,cat_tembok_interior,Tukang Cat,upah,OH,0.063,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+"A.4.7.1,10","Pengecatan 1 m2 tembok baru Interior ( 1 lapis cat dasar, 2 lapis cat penutup )",m2,cat_tembok_interior,Kepala Tukang,upah,OH,0.0063,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+"A.4.7.1,10","Pengecatan 1 m2 tembok baru Interior ( 1 lapis cat dasar, 2 lapis cat penutup )",m2,cat_tembok_interior,Mandor,upah,OH,0.003,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+"A.4.7.1,10","Pengecatan 1 m2 tembok baru Interior ( 1 lapis cat dasar, 2 lapis cat penutup )",m2,cat_tembok_interior,Cat dasar,bahan,kg,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+"A.4.7.1,10","Pengecatan 1 m2 tembok baru Interior ( 1 lapis cat dasar, 2 lapis cat penutup )",m2,cat_tembok_interior,Cat penutup,bahan,kg,0.26,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Pekerja,upah,OH,0.12,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Tukang khusus alumunium,upah,OH,0.3,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Kepala Tukang,upah,OH,0.023,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Mandor,upah,OH,0.018,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Rangka baja ringan type C 75.75,bahan,m',7.95,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Reng rangka baja ringan besar,bahan,m',4,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.2.1.9.a,Pemasangan 1 m2 Rangka atap alumunim baja ringan,m2,rangka_atap_baja_ringan,Paku roofing 10x16,bahan,dus,0.09,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.2.30,Pemasangan 1 m² genteng press kebumen,m2,penutup_atap_genteng_press,Pekerja,upah,OH,0.2,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.2.30,Pemasangan 1 m² genteng press kebumen,m2,penutup_atap_genteng_press,Tukang khusus alumunium,upah,OH,0.1,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.2.30,Pemasangan 1 m² genteng press kebumen,m2,penutup_atap_genteng_press,Kepala Tukang,upah,OH,0.01,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.2.30,Pemasangan 1 m² genteng press kebumen,m2,penutup_atap_genteng_press,Mandor,upah,OH,0.01,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.2.30,Pemasangan 1 m² genteng press kebumen,m2,penutup_atap_genteng_press,Genteng beton press kebumen,bahan,bh,11.5,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
+A.4.5.2.30,Pemasangan 1 m² genteng press kebumen,m2,penutup_atap_genteng_press,"Paku biasa 2"" - 5""",bahan,kg,0.03,,REV_RAB_RUMAH_2_LANTAI.xlsx sheet ANALISA
