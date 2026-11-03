@@ -1,3 +1,4 @@
+import io
 import math
 import os
 
@@ -5,6 +6,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 from matplotlib.patches import Rectangle
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.platypus import Image as RLImage, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 st.set_page_config(
     page_title="BangunPintar - Estimasi Denah & RAB",
@@ -142,14 +147,15 @@ st.markdown("---")
 
 
 # ---------------------------------------------------------------
-# NAVIGASI UTAMA BERBASIS 5 LAYAR (TABS)
+# NAVIGASI UTAMA BERBASIS 6 LAYAR (TABS)
 # ---------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "🗺️ Layar 1: Denah & Koordinat",
     "📐 Layar 2: Parameter & Struktur",
     "📋 Layar 3: Volume Pekerjaan",
     "🧱 Layar 4: Material & Tukang",
-    "💰 Layar 5: RAB & Penawaran Klien"
+    "💰 Layar 5: RAB & Penawaran Klien",
+    "📄 Layar 6: Cetak Dokumen PDF"
 ])
 
 
@@ -286,7 +292,7 @@ with tab2:
 
         st_k1, st_k2, st_k3 = st.columns(3)
         kolom_b = st_k1.number_input("Lebar Kolom (m)", min_value=0.05, value=0.15, step=0.01)
-        kolom_h = st_k2.number_input("Tebal Kolom (m)", min_value=0.05, value=0.15, step=0.01)
+        kolom_h = st_k2.number_input("Tinggi/Panjang Kolom (m)", min_value=0.05, value=0.15, step=0.01)
         jarak_kolom = st_k3.number_input("Jarak Maks Kolom (m)", min_value=1.0, value=3.0, step=0.5)
 
         st_r1, st_r2 = st.columns(2)
@@ -299,7 +305,7 @@ with tab2:
 
 
 # ===============================================================
-# CALCULATIONS LOGIC (SHARED ACROSS TABS 3, 4, 5)
+# CALCULATIONS LOGIC (SHARED ACROSS TABS 3, 4, 5, 6)
 # ===============================================================
 if st.session_state.ruang:
     luas_dinding_bruto = panjang_dinding * tinggi_dinding
@@ -383,7 +389,7 @@ with tab3:
 
 
 # ===============================================================
-# LAYAR 4: MATERIAL & TENAGA KERJA (DENGAN SIMULASI DURASI PROYEK)
+# LAYAR 4: MATERIAL & TENAGA KERJA (KONVERSI BESI KE LONJOR)
 # ===============================================================
 with tab4:
     st.subheader("Layar 4: Rekapitulasi Material & Tenaga Kerja")
@@ -408,7 +414,6 @@ with tab4:
             semen_kg = kebutuhan.get(("Semen Portland", "bahan", "kg"), 0)
             pasir_m3 = kebutuhan.get(("Pasir pasang", "bahan", "m3"), 0)
             
-            # Perbaikan pengambilan Bata Merah (mencari komponen bata merah di dalam kamus kebutuhan)
             bata_pcs = 0.0
             for k, j in kebutuhan.items():
                 if "Bata" in k[0]:
@@ -416,13 +421,15 @@ with tab4:
                     break
 
             besi_kg = sum([j for k, j in kebutuhan.items() if "Besi" in k[0]])
+            berat_per_batang = 7.4  # Standar 1 lonjor besi 12m (D10) ≈ 7.4 kg
+            besi_batang = math.ceil(besi_kg / berat_per_batang) if berat_per_batang > 0 else 0
 
             st.markdown("##### 📌 Logistik Utama Lapangan:")
             cm1, cm2, cm3, cm4 = st.columns(4)
             cm1.metric("Semen Portland", f"{semen_kg:,.0f} kg", f"≈ {semen_kg/50:,.1f} zak")
             cm2.metric("Pasir Pasang", f"{pasir_m3:,.2f} m³")
             cm3.metric("Bata Merah", f"{bata_pcs:,.0f} bh")
-            cm4.metric("Total Besi", f"{besi_kg:,.1f} kg")
+            cm4.metric("Total Besi", f"{besi_kg:,.1f} kg", f"≈ {besi_batang:,} btg (12m)")
 
         with t_mat2:
             upah_list = [[k[0], round(j, 1)] for k, j in kebutuhan.items() if k[1] == "upah"]
@@ -433,7 +440,6 @@ with tab4:
             st.markdown("#### ⏱️ Kalkulator & Simulasi Durasi Proyek Lapangan")
             st.caption("Atur jumlah pekerja dan mandor harian untuk melihat estimasi hari/bulan penyelesaian proyek secara otomatis.")
 
-            # Hitung total Orang-Hari (OH) untuk Pekerja dan Tukang
             total_oh_pekerja = sum([j for k, j in kebutuhan.items() if k[1] == "upah"])
 
             c_sim1, c_sim2, c_sim3 = st.columns(3)
@@ -441,7 +447,6 @@ with tab4:
             jml_mandor_lapangan = c_sim2.number_input("Jumlah Mandor / Pengawas", min_value=1, value=1, step=1)
             jam_kerja_per_hari = c_sim3.selectbox("Jam Kerja per Hari", [7, 8], index=1)
 
-            # Asumsi produktivitas tim (total OH dibagi jumlah pekerja aktif)
             estimasi_hari = math.ceil(total_oh_pekerja / jml_pekerja_lapangan)
             estimasi_bulan = estimasi_hari / 30.0
 
@@ -526,3 +531,214 @@ with tab5:
         st.bar_chart(rab.set_index("Pekerjaan")["Jumlah (Rp)"])
     else:
         st.info("Silakan lengkapi data pada Layar 1 terlebih dahulu.")
+
+
+# ===============================================================
+# LAYAR 6: CETAK DOKUMEN LAPORAN TERPADU (PDF & SKETSA DENAH)
+# ===============================================================
+with tab6:
+    st.subheader("📄 Layar 6: Laporan Hasil Perencanaan Terpadu (PDF Beserta Sketsa Denah)")
+    st.caption("Unduh laporan lengkap secara instan dalam format PDF beserta sketsa visual denah bangunan.")
+
+    if st.session_state.ruang and os.path.exists(os.path.join(FOLDER, "ahsp.csv")):
+        ahsp = baca_csv("ahsp.csv")
+        
+        # Hitung RAB untuk PDF
+        baris_rab = []
+        for no, row in enumerate(detail_pekerjaan, start=1):
+            komponen = ahsp[ahsp["kunci"] == row["AHSP_Key"]]
+            biaya_dasar = sum(k.koefisien * harga_map.get(k.komponen, 0) for k in komponen.itertuples())
+            harga_satuan = biaya_dasar * (1 + op / 100)
+            jumlah_harga = harga_satuan * row["Volume"]
+            baris_rab.append([no, row["Kategori"], row["Pekerjaan"], round(row["Volume"], 2), row["Satuan"], round(harga_satuan), round(jumlah_harga)])
+
+        rab_df = pd.DataFrame(baris_rab, columns=["No", "Kategori", "Pekerjaan", "Volume", "Satuan", "Harga Satuan (Rp)", "Jumlah (Rp)"])
+        subtotal = rab_df["Jumlah (Rp)"].sum()
+        nilai_ppn = subtotal * ppn / 100
+        total = subtotal + nilai_ppn
+
+        # Logistik untuk PDF
+        kebutuhan = {}
+        for row in detail_pekerjaan:
+            komponen = ahsp[ahsp["kunci"] == row["AHSP_Key"]]
+            for k in komponen.itertuples():
+                kunci_k = (k.komponen, k.jenis, k.satuan)
+                kebutuhan[kunci_k] = kebutuhan.get(kunci_k, 0) + k.koefisien * row["Volume"]
+
+        semen_kg = kebutuhan.get(("Semen Portland", "bahan", "kg"), 0)
+        pasir_m3 = kebutuhan.get(("Pasir pasang", "bahan", "m3"), 0)
+        bata_pcs = sum([j for k, j in kebutuhan.items() if "Bata" in k[0]])
+        besi_kg = sum([j for k, j in kebutuhan.items() if "Besi" in k[0]])
+        besi_batang = math.ceil(besi_kg / 7.4)
+        total_oh = sum([j for k, j in kebutuhan.items() if k[1] == "upah"])
+
+        # Render Gambar Denah ke Memory Buffer
+        def generate_denah_img_buffer():
+            fig_pdf, ax_pdf = plt.subplots(figsize=(4.5, 4))
+            for r in st.session_state.ruang:
+                rx, ry = r["Posisi X (m)"], r["Posisi Y (m)"]
+                rp_val, rl_val = r["Panjang X (m)"], r["Lebar Y (m)"]
+                ax_pdf.add_patch(Rectangle((rx, ry), rp_val, rl_val, facecolor="#eaf2fb", edgecolor="#1e3a8a", linewidth=2))
+                ax_pdf.text(rx + rp_val / 2, ry + rl_val / 2, f"{r['Nama Ruang']}\n{rp_val}x{rl_val}m",
+                            ha="center", va="center", fontsize=7, fontweight="bold", color="#0f172a")
+
+            max_x = max(r["Posisi X (m)"] + r["Panjang X (m)"] for r in st.session_state.ruang)
+            max_y = max(r["Posisi Y (m)"] + r["Lebar Y (m)"] for r in st.session_state.ruang)
+            ax_pdf.set_xlim(-0.5, max_x + 0.5)
+            ax_pdf.set_ylim(-0.5, max_y + 0.5)
+            ax_pdf.set_aspect("equal")
+            ax_pdf.grid(True, linestyle="--", alpha=0.5)
+            
+            img_buf = io.BytesIO()
+            plt.savefig(img_buf, format='png', bbox_inches='tight', dpi=150)
+            plt.close(fig_pdf)
+            img_buf.seek(0)
+            return img_buf
+
+        # Pembuat Dokumen PDF Utama
+        def buat_pdf_laporan():
+            buffer = io.BytesIO()
+            doc = SimpleDocTemplate(buffer, pagesize=A4, rightMargin=30, leftMargin=30, topMargin=30, bottomMargin=30)
+            styles = getSampleStyleSheet()
+            
+            title_style = ParagraphStyle(
+                'DocTitle',
+                parent=styles['Heading1'],
+                fontSize=14,
+                textColor=colors.HexColor('#1E3A8A'),
+                spaceAfter=4
+            )
+            
+            section_style = ParagraphStyle(
+                'SectionTitle',
+                parent=styles['Heading2'],
+                fontSize=11,
+                textColor=colors.HexColor('#1E3A8A'),
+                spaceBefore=10,
+                spaceAfter=4
+            )
+            
+            normal_style = ParagraphStyle(
+                'NormalText',
+                parent=styles['Normal'],
+                fontSize=8.5,
+                textColor=colors.HexColor('#1E293B')
+            )
+
+            story = []
+            
+            # Header Laporan
+            story.append(Paragraph("<b>LAPORAN RESMI PERENCANAAN & RAB</b>", title_style))
+            story.append(Paragraph("<b>Aplikasi BangunPintar - Estimasi Biaya & Kebutuhan Material</b>", normal_style))
+            story.append(Spacer(1, 10))
+
+            # 1. Ringkasan Geometri & Sketsa Denah
+            story.append(Paragraph("<b>1. RINGKASAN GEOMETRI & SKETSA DENAH BANGUNAN</b>", section_style))
+            
+            ruang_data = [["Nama Ruang", "Pos X", "Pos Y", "Pjg X", "Lbr Y", "Luas"]]
+            for r in st.session_state.ruang:
+                ruang_data.append([
+                    r["Nama Ruang"], f"{r['Posisi X (m)']}m", f"{r['Posisi Y (m)']}m",
+                    f"{r['Panjang X (m)']}m", f"{r['Lebar Y (m)']}m", f"{r['Panjang X (m)'] * r['Lebar Y (m)']:.2f}m²"
+                ])
+            
+            t_ruang = Table(ruang_data, colWidths=[85, 40, 40, 40, 40, 50])
+            t_ruang.setStyle(TableStyle([
+                ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1E3A8A')),
+                ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+                ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+                ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0,0), (-1,-1), 7.5),
+                ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8FAFC')),
+                ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 3),
+            ]))
+
+            # Memasukkan Gambar Sketsa Denah ke dalam Tabel PDF
+            img_buffer = generate_denah_img_buffer()
+            denah_image = RLImage(img_buffer, width=190, height=170)
+
+            tabel_layout_denah = Table([[t_ruang, denah_image]], colWidths=[305, 200])
+            tabel_layout_denah.setStyle(TableStyle([
+                ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+                ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+            ]))
+            story.append(tabel_layout_denah)
+            
+            story.append(Spacer(1, 4))
+            story.append(Paragraph(f"<b>Total Luas Bangunan:</b> {total_luas:.2f} m² | <b>Panjang Dinding:</b> {panjang_dinding:.2f} m | <b>Kolom Praktis:</b> {n_kolom} titik", normal_style))
+            story.append(Spacer(1, 8))
+
+            # 2. Logistik & Durasi
+            story.append(Paragraph("<b>2. KEBUTUHAN LOGISTIK & DURASI PROYEK</b>", section_style))
+            log_data = [
+                ["Material Utama", "Jumlah Kebutuhan"],
+                ["Semen Portland", f"{semen_kg:,.0f} kg (≈ {semen_kg/50:,.1f} zak)"],
+                ["Pasir Pasang", f"{pasir_m3:,.2f} m³"],
+                ["Bata Merah", f"{bata_pcs:,.0f} buah"],
+                ["Besi Beton (12m)", f"{besi_batang:,} batang (≈ {besi_kg:,.0f} kg)"],
+                ["Estimasi Waktu", f"± {math.ceil(total_oh / 4)} Hari Kerja (asumsi 4 pekerja)"]
+            ]
+            t_log = Table(log_data, colWidths=[180, 325])
+            t_log.setStyle(TableStyle([
+                ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2563EB')),
+                ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+                ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+                ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0,0), (-1,-1), 8),
+                ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8FAFC')),
+                ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 4),
+            ]))
+            story.append(t_log)
+            story.append(Spacer(1, 8))
+
+            # 3. RAB Ringkas
+            story.append(Paragraph("<b>3. RENCANA ANGGARAN BIAYA (RAB) PENAWARAN</b>", section_style))
+            rab_pdf_data = [["No", "Kategori", "Pekerjaan", "Vol", "Sat", "Jumlah (Rp)"]]
+            for r in baris_rab:
+                rab_pdf_data.append([str(r[0]), str(r[1]), str(r[2]), str(r[3]), str(r[4]), rp(r[6])])
+            
+            t_rab = Table(rab_pdf_data, colWidths=[25, 125, 185, 45, 35, 90])
+            t_rab.setStyle(TableStyle([
+                ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1E3A8A')),
+                ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+                ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+                ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0,0), (-1,-1), 7),
+                ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8FAFC')),
+                ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#CBD5E1')),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 3),
+            ]))
+            story.append(t_rab)
+            story.append(Spacer(1, 8))
+
+            # Total Rekap
+            story.append(Paragraph(f"<b>Subtotal Pekerjaan:</b> {rp(subtotal)}", normal_style))
+            story.append(Paragraph(f"<b>PPN ({ppn:g}%):</b> {rp(nilai_ppn)}", normal_style))
+            story.append(Paragraph(f"<b>GRAND TOTAL BIAYA: {rp(total)}</b>", ParagraphStyle('GrandTotal', parent=normal_style, fontName='Helvetica-Bold', fontSize=11, textColor=colors.HexColor('#1E3A8A'))))
+            story.append(Paragraph(f"<b>Estimasi Biaya per m²:</b> {rp(total / total_luas)} / m²", normal_style))
+
+            doc.build(story)
+            buffer.seek(0)
+            return buffer.getvalue()
+
+        # Tampilkan preview ringkas di layar
+        st.markdown("### 📋 Preview Laporan Terpadu")
+        st.info("Klik tombol di bawah ini untuk mengunduh laporan lengkap beserta sketsa denah dalam format PDF secara otomatis.")
+        
+        pdf_bytes = buat_pdf_laporan()
+        st.download_button(
+            label="📥 Unduh Laporan PDF + Sketsa Denah Otomatis",
+            data=pdf_bytes,
+            file_name="Laporan_RAB_BangunPintar.pdf",
+            mime="application/pdf",
+            use_container_width=True
+        )
+
+        st.markdown("---")
+        st.markdown(f"* **Total Luas Bangunan:** {total_luas:.2f} m²")
+        st.markdown(f"* **Grand Total RAB:** {rp(total)}")
+        st.markdown(f"* **Harga per m²:** {rp(total / total_luas)}")
+    else:
+        st.info("Silakan masukkan data ruangan di Layar 1 terlebih dahulu.")
