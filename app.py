@@ -21,7 +21,7 @@ FOLDER = os.path.dirname(os.path.abspath(__file__))
 
 
 # ---------------------------------------------------------------
-# Fungsi Bantu
+# Fungsi Bantu (Dengan Cache agar Ringan & Cepat)
 # ---------------------------------------------------------------
 @st.cache_data
 def baca_csv(nama_file):
@@ -572,7 +572,7 @@ with tab6:
         besi_batang = math.ceil(besi_kg / 7.4)
         total_oh = sum([j for k, j in kebutuhan.items() if k[1] == "upah"])
 
-        # Render Gambar Denah ke Memory Buffer
+        # Render Gambar Denah ke Memory Buffer (Optimasi DPI=100 agar ringan)
         def generate_denah_img_buffer():
             fig_pdf, ax_pdf = plt.subplots(figsize=(4.5, 4))
             for r in st.session_state.ruang:
@@ -590,7 +590,7 @@ with tab6:
             ax_pdf.grid(True, linestyle="--", alpha=0.5)
             
             img_buf = io.BytesIO()
-            plt.savefig(img_buf, format='png', bbox_inches='tight', dpi=150)
+            plt.savefig(img_buf, format='png', bbox_inches='tight', dpi=100)
             plt.close(fig_pdf)
             img_buf.seek(0)
             return img_buf
