@@ -214,6 +214,10 @@ with tab1:
     with c_f2:
         st.markdown("##### 🖼️ Preview Gambar Denah")
         if st.session_state.ruang:
+            # Bersihkan memori plot agar dinamis saat menambah ruangan ke-3 dan seterusnya
+            plt.clf()
+            plt.close('all')
+            
             fig, ax = plt.subplots(figsize=(5.5, 5))
             for r in st.session_state.ruang:
                 rx, ry = r["Posisi X (m)"], r["Posisi Y (m)"]
@@ -224,8 +228,9 @@ with tab1:
 
             max_x = max(r["Posisi X (m)"] + r["Panjang X (m)"] for r in st.session_state.ruang)
             max_y = max(r["Posisi Y (m)"] + r["Lebar Y (m)"] for r in st.session_state.ruang)
-            ax.set_xlim(-0.5, max_x + 0.5)
-            ax.set_ylim(-0.5, max_y + 0.5)
+            
+            ax.set_xlim(-0.5, max_x + 1.0)
+            ax.set_ylim(-0.5, max_y + 1.0)
             ax.set_aspect("equal")
             ax.grid(True, linestyle="--", alpha=0.5)
             ax.set_xlabel("Sumbu X (m)")
